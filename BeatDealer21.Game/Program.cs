@@ -6,7 +6,14 @@ namespace BeatDealer21.Game
     {
         static void Main(string[] args)
         {
-            Console.WriteLine("Hello World!");
+            var player = new Player
+            {
+                Name = "Sam"
+            };
+
+            new TwoPlayerBlackJackGame(player).StartGame();
+
+            Console.ReadKey();
         }
     }
 }
