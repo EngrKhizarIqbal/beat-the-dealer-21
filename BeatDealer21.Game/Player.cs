@@ -14,18 +14,18 @@ namespace BeatDealer21.Game
             Cards = new Queue<Card>();
         }
 
-        public void ClearData()
+        public virtual void ClearData()
         {
             Score = 0;
             Cards.Clear();
         }
 
-        public bool IsBlackJack()
+        public virtual bool IsBlackJack()
         {
             return Score == 21;
         }
 
-        public void AddCard(Card card)
+        public virtual void AddCard(Card card)
         {
             Cards.Enqueue(card);
             Score = GetTotalScore();
@@ -38,7 +38,7 @@ namespace BeatDealer21.Game
             return Score;
         }
 
-        public List<Card> GetPlayersCard()
+        public virtual List<Card> GetPlayersCard()
         {
             return Cards.ToList();
         }

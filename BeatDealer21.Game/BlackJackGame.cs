@@ -10,7 +10,7 @@ namespace BeatDealer21.Game
         private readonly Random _randomGenerator;
         private List<Card> _cardDeck;
 
-        public Player DealerPlayer { get; }
+        public virtual Player DealerPlayer { get; }
 
         public TwoPlayerBlackJackGame(Player playerOne)
         {
