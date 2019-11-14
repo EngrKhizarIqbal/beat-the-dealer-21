@@ -7,14 +7,15 @@ namespace BeatDealer21.Game
     public class TwoPlayerBlackJackGame
     {
         private readonly Player _playerOne;
-        private readonly Player _dealerPlayer;
         private readonly Random _randomGenerator;
         private List<Card> _cardDeck;
+
+        public Player DealerPlayer { get; }
 
         public TwoPlayerBlackJackGame(Player playerOne)
         {
             _playerOne = playerOne;
-            _dealerPlayer = new Player
+            DealerPlayer = new Player
             {
                 Name = "Dealer"
             };
@@ -22,10 +23,10 @@ namespace BeatDealer21.Game
             _cardDeck = new List<Card>();
         }
 
-        public void StartGame()
+        public virtual void StartGame()
         {
             _playerOne.ClearData();
-            _dealerPlayer.ClearData();
+            DealerPlayer.ClearData();
 
             Console.WriteLine("Welcome to the 'Beat the Dealer at 21' game.");
             Console.WriteLine("Shuffling card deck.");
@@ -35,8 +36,8 @@ namespace BeatDealer21.Game
             _playerOne.AddCard(GetNextRandomCard());
             _playerOne.AddCard(GetNextRandomCard());
 
-            _dealerPlayer.AddCard(GetNextRandomCard());
-            _dealerPlayer.AddCard(GetNextRandomCard());
+            DealerPlayer.AddCard(GetNextRandomCard());
+            DealerPlayer.AddCard(GetNextRandomCard());
 
             if (!IsAnyPlayerHasBalckJack())
             {
@@ -49,16 +50,16 @@ namespace BeatDealer21.Game
                 }
                 else
                 {
-                    while (_dealerPlayer.Score <= _playerOne.Score)
-                        _dealerPlayer.AddCard(GetNextRandomCard());
+                    while (DealerPlayer.Score <= _playerOne.Score)
+                        DealerPlayer.AddCard(GetNextRandomCard());
 
-                    if (_dealerPlayer.Score > 21)
+                    if (DealerPlayer.Score > 21)
                     {
-                        Console.WriteLine($"{_dealerPlayer.Name} score {_dealerPlayer.Score} which exceeded 21 and he lost the game");
+                        Console.WriteLine($"{DealerPlayer.Name} score {DealerPlayer.Score} which exceeded 21 and he lost the game");
                     }
                     else
                     {
-                        Console.WriteLine($"{_dealerPlayer.Name} score is {_dealerPlayer.Score} and {_playerOne.Name} score is {_playerOne.Score} and neither won the game.");
+                        Console.WriteLine($"{DealerPlayer.Name} score is {DealerPlayer.Score} and {_playerOne.Name} score is {_playerOne.Score} and neither won the game.");
                     }
                 }
             }
@@ -102,9 +103,9 @@ namespace BeatDealer21.Game
                 Console.WriteLine($"{_playerOne.Name} has blackjack and wins the game.");
                 isBlackJacked = true;
             }
-            else if (_dealerPlayer.IsBlackJack())
+            else if (DealerPlayer.IsBlackJack())
             {
-                Console.WriteLine($"{_dealerPlayer.Name} has blackjack and wins the game.");
+                Console.WriteLine($"{DealerPlayer.Name} has blackjack and wins the game.");
                 isBlackJacked = true;
             }
 
