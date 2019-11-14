@@ -11,9 +11,16 @@ namespace BeatDealer21.Game
                 Name = "Sam"
             };
 
-            new TwoPlayerBlackJackGame(player).StartGame();
+            var game = new TwoPlayerBlackJackGame(player);
+            var playAgain = "true";
+            do
+            {
+                game.StartGame();
 
-            Console.ReadKey();
+                Console.WriteLine($"{Environment.NewLine}Game End. Do you want to play again? 'Y' to play again or any other key to exit.");
+                playAgain = Console.ReadLine();
+            }
+            while (playAgain.ToLower().Trim() == "y");
         }
     }
 }
