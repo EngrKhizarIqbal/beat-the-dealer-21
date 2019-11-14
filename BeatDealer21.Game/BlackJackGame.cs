@@ -24,6 +24,9 @@ namespace BeatDealer21.Game
 
         public void StartGame()
         {
+            _playerOne.ClearData();
+            _dealerPlayer.ClearData();
+
             Console.WriteLine("Welcome to the 'Beat the Dealer at 21' game.");
             Console.WriteLine("Shuffling card deck.");
 
@@ -42,7 +45,7 @@ namespace BeatDealer21.Game
 
                 if(_playerOne.Score > 21)
                 {
-                    Console.WriteLine($"{_playerOne.Name} score exceeded 21 and he lost the game");
+                    Console.WriteLine($"{_playerOne.Name} score is {_playerOne.Score} which exceeded 21 and he lost the game");
                 }
                 else
                 {
@@ -51,7 +54,11 @@ namespace BeatDealer21.Game
 
                     if (_dealerPlayer.Score > 21)
                     {
-                        Console.WriteLine($"{_dealerPlayer.Name} score exceeded 21 and he lost the game");
+                        Console.WriteLine($"{_dealerPlayer.Name} score {_dealerPlayer.Score} which exceeded 21 and he lost the game");
+                    }
+                    else
+                    {
+                        Console.WriteLine($"{_dealerPlayer.Name} score is {_dealerPlayer.Score} and {_playerOne.Name} score is {_playerOne.Score} and neither won the game.");
                     }
                 }
             }
